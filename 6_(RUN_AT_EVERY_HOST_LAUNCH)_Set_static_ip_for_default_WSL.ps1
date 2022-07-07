@@ -19,7 +19,8 @@ $wslip = $network+".2"
 $netmask = "24"
 $broadcastip = $network+".255"
 
-#Check the name for WSL adapter in Windows Network&Internet settings GUI
+wsl sh -c "sudo ip addr add $wslip/$netmask broadcast $broadcastip dev eth0 label eth0:WSL"
+#Please check the name for WSL adapter in Windows Network&Internet settings GUI. Should be vEthernet (WSL)
 netsh interface ip add address name="vEthernet (WSL)" $ip 255.255.255.0
 
-wsl sh -c "sudo ip addr add $wslip/$netmask broadcast $broadcastip dev eth0 label eth0:WSL"
+Read-Host -Prompt 'Done. Press ENTER to continue'

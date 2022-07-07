@@ -14,7 +14,7 @@ if [ -z "$RUNNING" ]; then
 fi
 
 if [ ! -v DOCKER_HOST ]; then
-    export DOCKER_HOST=tcp://127.0.0.1
+    export DOCKER_HOST=tcp://127.0.0.1:2375
 fi
 '
 $bytes = [System.Text.Encoding]::ASCII.GetBytes($txt)
@@ -29,3 +29,5 @@ $bytes = [System.Text.Encoding]::ASCII.GetBytes($txt)
 $output =[Convert]::ToBase64String($bytes)
 
 wsl sh -c "echo $output | base64 -d | sh | sudo tee -a /etc/sudoers"
+
+Read-Host -Prompt 'Done. Press ENTER to continue'

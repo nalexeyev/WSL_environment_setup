@@ -19,8 +19,7 @@ Write-Output '*                                                                 
 Write-Output '****************************************************************************'
 
 #Update Windows
-
-Write-Output 'Windows Update in progress. Run this script again if the computer restarts'
+Write-Host 'Windows Update in progress. Run this script again if the computer restarts. Reboot the computer manually if progess stopped for a long time (20+)' -Foreground Yellow
 Import-Module PSWindowsUpdate
 Install-WindowsUpdate -AcceptAll -AutoReboot
 
@@ -63,6 +62,9 @@ Write-Host 'If you entered username and password in WSL and version is 2 (see ta
 Read-Host -Prompt 'press (Ctrl+C) to abort or ENTER to continue'
 
 Write-Output ' '
-Write-Output 'Setup workspace directory. You can access it as ~/workspace in WSL or F:\workspace in Windows host'
-Write-Output 'Whole WSL file system is available by \\WSL$ from Windows Explorer'
+Write-Host "Setup workspace directory. You can access it as ~/workspace in WSL or "$DRIVE_LETTER":\workspace in Windows host" -ForegroundColor Yellow
+Write-Host 'If you want to unregister and uninstall WSL in the future, this will not affect your workspace.' -ForegroundColor Yellow
+Write-Host 'Whole WSL file system is available by \\WSL$ from Windows Explorer' -ForegroundColor Yellow
 wsl -d Ubuntu sh -c "ln -s /mnt/$DRIVE_LETTER/workspace ~/workspace"
+
+Read-Host -Prompt 'Done. Press ENTER to continue'
