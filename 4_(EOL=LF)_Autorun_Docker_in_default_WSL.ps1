@@ -8,14 +8,14 @@ $txt = '
 
 RUNNING=$(ps aux | grep dockerd | grep -v grep)
 if [ -z "$RUNNING" ]; then
-#    sudo dockerd > /dev/null 2>&1 &
-    sudo dockerd -H tcp://0.0.0.0 > /dev/null 2>&1 &
+    sudo dockerd > /dev/null 2>&1 &
+#    sudo dockerd -H tcp://0.0.0.0 > /dev/null 2>&1 &
     disown
 fi
 
-if [ ! -v DOCKER_HOST ]; then
-    export DOCKER_HOST=tcp://127.0.0.1:2375
-fi
+#if [ ! -v DOCKER_HOST ]; then
+#    export DOCKER_HOST=tcp://127.0.0.1:2375
+#fi
 '
 $bytes = [System.Text.Encoding]::ASCII.GetBytes($txt)
 $output =[Convert]::ToBase64String($bytes)
